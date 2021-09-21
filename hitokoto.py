@@ -2,7 +2,7 @@
 import requests
 
 
-def get_hitokoto():
+def get_hitokoto(msg):
     try:
         resp = requests.get('https://v1.hitokoto.cn')
         info_content = resp.json()['hitokoto']
