@@ -1,6 +1,6 @@
 # wechat-bot
 
-又一个微信小机器人，使用 [itchat](https://github.com/littlecodersh/ItChat) 开发。
+又一个微信群聊机器人，使用 [itchat](https://github.com/littlecodersh/ItChat) 开发。
 
 ### 环境 & 运行
 
