@@ -14,7 +14,7 @@ def get_weather(msg):
     for word in words:
         if word.flag == 'ns':
             return get_weather_by_city_name(word.word)
-    return u'识别不了地名'
+    return u'无法识别地名'
 
 
 def get_weather_by_city_name(city_name):
