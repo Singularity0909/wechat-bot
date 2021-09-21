@@ -11,7 +11,7 @@ class Record:
 records: Dict[str, Record] = {}
 
 
-def is_repeat(msg):
+def get_repeat(msg):
     text = msg['Text']
     record = records.get(msg['FromUserName'])
     if not record or record.last_text != text:
@@ -19,5 +19,5 @@ def is_repeat(msg):
         records[msg['FromUserName']] = record
     elif not record.repeated and record.last_text == text:
         record.repeated = True
-        return True
-    return False
+        return text
+    return None

@@ -8,12 +8,13 @@ from bs4 import BeautifulSoup
 from jieba import posseg
 
 
-def get_weather(text):
+def get_weather(msg):
+    text = msg['Text']
     words = posseg.lcut(text)
     for word in words:
         if word.flag == 'ns':
             return get_weather_by_city_name(word.word)
-    return None
+    return u'识别不了地名'
 
 
 def get_weather_by_city_name(city_name):
