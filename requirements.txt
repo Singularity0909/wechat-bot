@@ -3,3 +3,4 @@ jieba
 beautifulsoup4
 dataclasses
 itchat
+wordcloud

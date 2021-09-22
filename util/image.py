@@ -11,7 +11,9 @@ def download_image(url, path):
         assert resp.status_code == 200
         if not os.path.exists(path):
             os.makedirs(path)
-        open(path + file_name, 'wb').write(resp.content)
+        with open(os.path.join(path, file_name), 'wb') as f:
+            f.write(resp.content)
+            f.close()
         return file_name
     except:
         return None

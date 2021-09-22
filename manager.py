@@ -13,11 +13,11 @@ def set_command(func, is_at, keys=None):
         else:
             command_all_default = func
     elif is_at:
-        for idx in range(len(keys)):
-            command_map_at[keys[idx]] = func
+        for key in keys:
+            command_map_at[key] = func
     else:
-        for idx in range(len(keys)):
-            command_map_all[keys[idx]] = func
+        for key in keys:
+            command_map_all[key] = func
 
 
 def get_command(msg):
