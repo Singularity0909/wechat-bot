@@ -17,11 +17,11 @@ def get_zhihu(msg):
         stories = data.get('stories')
         if not stories:
             return u'暂时没有数据，或者服务无法访问'
-        reply = ''
+        reply = u'今天的知乎日报：\n'
         for story in stories:
             url = STORY_URL_FORMAT.format(story['id'])
-            title = story.get('title', '未知内容')
+            title = story.get('title', u'未知内容')
             reply += f'\n{title}\n{url}\n'
         return reply.strip()
     except:
-        return '获取失败'
+        return u'获取失败'

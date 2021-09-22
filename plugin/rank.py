@@ -11,7 +11,7 @@ def get_rank_list(msg):
         for key, val in count_map.items():
             pairs.append((val, key))
         pairs.sort(reverse=True)
-        reply = u'当日天梯 🏆\n\n'
+        reply = u'今日天梯 🏆\n\n'
         for idx in range(min(len(pairs), TOP_NUMBER)):
             nickname, count = pairs[idx][1], pairs[idx][0]
             reply += u'%s %d 次\n' % (nickname, count)
