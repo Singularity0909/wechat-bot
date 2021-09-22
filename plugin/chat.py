@@ -25,6 +25,6 @@ def get_chat_reply(msg):
         contents = re.findall(r'\"content\":\"(.+?)\\r\\n\"', resp.content.decode())
         if contents[-1] == 'defaultReply':
             return random.choice(EXPR_DONT_UNDERSTAND)
-        return contents[-1]
+        return contents[-1].replace('\\r\\n', '\n')
     except:
         return random.choice(EXPR_DONT_UNDERSTAND)
