@@ -5,9 +5,9 @@ command_at_default = None
 command_all_default = None
 
 
-def set_command(keys, is_at, is_default, func):
+def set_command(func, is_at, keys=None):
     global command_at_default, command_all_default
-    if is_default:
+    if not keys:
         if is_at:
             command_at_default = func
         else:

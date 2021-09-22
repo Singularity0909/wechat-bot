@@ -15,15 +15,15 @@ def group_text_reply(msg):
         return resp
 
 
-manager.set_command([u'帮助', u'功能', 'help'], True, False, helper.get_help)
-manager.set_command([u'天气', 'weather'], True, False, weather.get_weather)
-manager.set_command([u'一言', 'hitokoto'], True, False, hitokoto.get_hitokoto)
-manager.set_command([u'每日一句', 'daily'], True, False, daily.get_daily)
-manager.set_command([u'笑话', 'joke'], True, False, joke.get_joke)
-manager.set_command([u'知乎', 'zhihu'], True, False, zhihu.get_zhihu)
-manager.set_command([u'力扣', u'随机一题', 'leetcode'], True, False, leetcode.get_random_problem)
-manager.set_command(None, True, True, chat.get_chat_reply)
-manager.set_command(None, False, True, repeater.get_repeat)
+manager.set_command(func=helper.get_help, is_at=True, keys=[u'帮助', u'功能', 'help'])
+manager.set_command(func=weather.get_weather, is_at=True, keys=[u'天气', 'weather'])
+manager.set_command(func=hitokoto.get_hitokoto, is_at=True, keys=[u'一言', 'hitokoto'])
+manager.set_command(func=daily.get_daily, is_at=True, keys=[u'每日一句', 'daily'])
+manager.set_command(func=joke.get_joke, is_at=True, keys=[u'笑话', 'joke'])
+manager.set_command(func=zhihu.get_zhihu, is_at=True, keys=[u'知乎', 'zhihu'])
+manager.set_command(func=leetcode.get_random_problem, is_at=True, keys=[u'力扣', u'随机一题', 'leetcode'])
+manager.set_command(func=chat.get_chat_reply, is_at=True)
+manager.set_command(func=repeater.get_repeat, is_at=False)
 
 if __name__ == '__main__':
     itchat.auto_login(enableCmdQR=2, hotReload=True)
