@@ -12,13 +12,16 @@ EXPR_DONT_UNDERSTAND = (
     '唔……等会再告诉你'
 )
 
+API_URL_FORMAT = 'http://nlp.xiaoi.com/robot/webrobot?&callback=__webrobot_processMsg&data=%7B%22sessionId%22%3A%226fbcb6cc41e2470b806f22ee195754b9%22%2C%22robotId%22%3A%22webbot%22%2C%22userId%22%3A%22dda77818b04e4ad79a9d3836b6483e03%22%2C%22body%22%3A%7B%22content%22%3A%22{}%22%7D%2C%22type%22%3A%22txt%22%7D'
+
 
 def get_chat_reply(msg):
     try:
         prefix = u'@%s' % msg['User']['Self']['NickName']
         text = msg['Text'].replace(prefix, '').strip()
-        url = 'http://nlp.xiaoi.com/robot/webrobot?&callback=__webrobot_processMsg&data=%7B%22sessionId%22%3A%226fbcb6cc41e2470b806f22ee195754b9%22%2C%22robotId%22%3A%22webbot%22%2C%22userId%22%3A%22dda77818b04e4ad79a9d3836b6483e03%22%2C%22body%22%3A%7B%22content%22%3A%22' + text + '%22%7D%2C%22type%22%3A%22txt%22%7D'
+        url = API_URL_FORMAT.format(text)
         resp = requests.get(url)
+        assert resp.status_code == 200
         contents = re.findall(r'\"content\":\"(.+?)\\r\\n\"', resp.content.decode())
         if contents[-1] == 'defaultReply':
             return random.choice(EXPR_DONT_UNDERSTAND)

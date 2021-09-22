@@ -7,6 +7,9 @@ import requests
 from bs4 import BeautifulSoup
 from jieba import posseg
 
+CITY_CODE_API_URL = 'toy1.weather.com.cn'
+CONTENT_API_URL_FORMAT = 'http://www.weather.com.cn/weather/{}.shtml'
+
 
 def get_weather(msg):
     text = msg['Text']
@@ -33,10 +36,11 @@ def get_weather_by_city_name(city_name):
 
 def get_weather_raw_by_city_code(city_code):
     try:
-        url = 'http://www.weather.com.cn/weather/' + city_code + '.shtml'
-        r = requests.get(url)
-        r.encoding = 'utf-8'
-        soup = BeautifulSoup(r.text, 'html.parser')
+        url = CONTENT_API_URL_FORMAT.format(city_code)
+        resp = requests.get(url)
+        assert resp.status_code == 200
+        resp.encoding = 'utf-8'
+        soup = BeautifulSoup(resp.text, 'html.parser')
         div = soup.find('div', {'id': '7d'})
         li = div.find('ul').find_all('li')
         week_info = []
@@ -60,7 +64,7 @@ def get_weather_raw_by_city_code(city_code):
 def get_city_code(city_name):
     try:
         parameter = urllib.parse.urlencode({'cityname': city_name})
-        conn = http.client.HTTPConnection('toy1.weather.com.cn', 80, timeout=5)
+        conn = http.client.HTTPConnection(CITY_CODE_API_URL, 80, timeout=5)
         conn.request('GET', '/search?' + parameter)
         r = conn.getresponse()
         data = r.read().decode()[1: -1]

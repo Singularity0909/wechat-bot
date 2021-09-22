@@ -1,3 +1,4 @@
+# coding=utf8
 from dataclasses import dataclass
 from typing import Dict
 
