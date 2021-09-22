@@ -6,5 +6,9 @@ HEADERS = {'app_id': 'lbeqhqhnhgo22otp', 'app_secret': 'OFpUMnhWOEhoVWNkM3dOaVV2
 
 
 def get_joke(msg):
-    resp = requests.get(API_URL, headers=HEADERS)
-    return resp.json()['data'][0]['content']
+    try:
+        resp = requests.get(API_URL, headers=HEADERS)
+        assert resp.status_code == 200
+        return resp.json()['data'][0]['content']
+    except:
+        return u'获取失败'
