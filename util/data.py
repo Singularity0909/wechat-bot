@@ -35,3 +35,32 @@ def get_today_text(msg):
             resp += line
         f.close()
     return resp
+
+
+def get_nickname_by_log(line):
+    len_ = len(line)
+    idx_left, idx_right = 0, len_ - 3
+    count = 0
+    for idx in range(len(line)):
+        if line[idx] == ' ':
+            count += 1
+            if count == 2:
+                idx_left = idx + 1
+                break
+    return line[idx_left:idx_right + 1]
+
+
+def get_today_count_map(msg):
+    count_map = {}
+    path = os.path.join(LOG_FILE_PATH, get_log_file_name(msg))
+    if os.path.exists(path):
+        with open(path) as f:
+            lines = f.readlines()
+            for line in lines:
+                if line.startswith('@') and line.endswith('@\n'):
+                    nickname = get_nickname_by_log(line)
+                    if not count_map.get(nickname):
+                        count_map[nickname] = 0
+                    count_map[nickname] += 1
+            f.close()
+    return count_map

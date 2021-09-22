@@ -24,13 +24,13 @@ def get_command(msg):
     text = msg['Text']
     is_at = msg['isAt']
     if is_at:
-        for key in command_map_at.keys():
+        for key, val in command_map_at.items():
             if key in text:
-                return command_map_at[key]
+                return val
         return command_at_default
-    for key in command_map_all.keys():
+    for key, val in command_map_all.items():
         if key in text:
-            return command_map_all[key]
+            return val
     return command_all_default
 
 
