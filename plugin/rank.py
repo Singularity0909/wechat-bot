@@ -1,12 +1,12 @@
 # coding=utf8
-from util import data
+from util import log
 
 TOP_NUMBER = 10
 
 
 def get_rank_list(msg):
     try:
-        count_map = data.get_today_count_map(msg)
+        count_map = log.get_today_count_map(msg)
         pairs = []
         for key, val in count_map.items():
             pairs.append((val, key))

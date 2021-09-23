@@ -9,6 +9,6 @@ def get_joke(msg):
     try:
         resp = requests.get(API_URL, headers=HEADERS)
         assert resp.status_code == 200
-        return resp.json()['data'][0]['content']
+        return resp.json()['log'][0]['content']
     except:
         return u'获取失败'

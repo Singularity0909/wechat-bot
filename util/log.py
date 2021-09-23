@@ -2,7 +2,7 @@
 import os
 import time
 
-LOG_FILE_PATH = 'data'
+LOG_FILE_PATH = 'log'
 
 
 def get_current_time():
@@ -28,8 +28,7 @@ def get_today_text(msg):
         return None
     resp = ''
     with open(path) as f:
-        lines = f.readlines()
-        for line in lines:
+        for line in f.readlines():
             if line.startswith('@') and line.endswith('@\n'):
                 continue
             resp += line
@@ -55,8 +54,7 @@ def get_today_count_map(msg):
     path = os.path.join(LOG_FILE_PATH, get_log_file_name(msg))
     if os.path.exists(path):
         with open(path) as f:
-            lines = f.readlines()
-            for line in lines:
+            for line in f.readlines():
                 if line.startswith('@') and line.endswith('@\n'):
                     nickname = get_nickname_by_log(line)
                     if not count_map.get(nickname):
