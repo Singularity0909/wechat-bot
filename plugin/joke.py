@@ -1,4 +1,4 @@
-# coding=utf8
+# coding=utf-8
 import requests
 
 API_URL = 'https://www.mxnzp.com/api/jokes/list/random'

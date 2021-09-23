@@ -1,4 +1,4 @@
-# coding=utf8
+# coding=utf-8
 import requests
 
 API_URL = 'https://news-at.zhihu.com/api/4/news/latest'

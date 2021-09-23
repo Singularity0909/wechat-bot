@@ -5,27 +5,14 @@ import itchat
 import jieba
 from wordcloud import WordCloud
 
+from plugin import stopword_set
 from util import log
 
 FONT_PATH = 'data'
 FONT_FILE_NAME = 'msyh.ttf'
+
 IMG_SAVE_PATH = 'temp'
 IMG_FILE_NAME = 'word_cloud.png'
-
-STOPWORDS_PATH = 'data'
-STOPWORDS_FILE_NAMES = (
-    'baidu_stopwords.txt',
-    'cn_stopwords.txt',
-    'hit_stopwords.txt',
-    'scu_stopwords.txt'
-)
-
-stopword_set = set()
-for file_name in STOPWORDS_FILE_NAMES:
-    with open(os.path.join(STOPWORDS_PATH, file_name), 'r') as f:
-        for line in f.readlines():
-            stopword_set.add(line.strip())
-        f.close()
 
 
 def get_word_cloud(msg):

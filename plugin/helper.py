@@ -1,4 +1,4 @@
-# coding=utf8
+# coding=utf-8
 def get_help(msg):
     return u'现有功能如下：\n\n' + \
            u'- 天气预报：@我 {地区}【天气/ weather】\n' + \

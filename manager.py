@@ -1,4 +1,4 @@
-# coding=utf8
+# coding=utf-8
 command_map_at = {}
 command_map_all = {}
 command_at_default = None
@@ -36,6 +36,8 @@ def get_command(msg):
 
 def get_response(msg):
     func = get_command(msg)
+    if not func:
+        return None
     body = func(msg)
     if not body:
         return None
