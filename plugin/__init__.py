@@ -13,7 +13,7 @@ STOPWORDS_FILE_NAMES = (
 stopword_set = set()
 
 for file_name in STOPWORDS_FILE_NAMES:
-    with open(os.path.join(STOPWORDS_PATH, file_name), 'r') as f:
+    with open(os.path.join(STOPWORDS_PATH, file_name), 'r', encoding='utf-8') as f:
         for line in f.readlines():
             stopword_set.add(line.strip())
         f.close()
